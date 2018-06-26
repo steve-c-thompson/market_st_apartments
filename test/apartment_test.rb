@@ -12,4 +12,15 @@ class ApartmentTest < Minitest::Test
     assert_equal 2, apartment.bathrooms
     assert_equal 3, apartment.bedrooms
   end
+
+  def test_it_can_add_renters
+    a1 = Apartment.new({number: 1, monthly_rent: 800, bathrooms: 1, bedrooms: 1})
+    assert_nil a1.renter
+
+    joe = Renter.new("Joe")
+    a1.add_renter(joe)
+
+    refute_nil a1.renter
+    assert_equal "Joe", a1.renter.name
+  end
 end
